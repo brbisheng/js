@@ -12,13 +12,28 @@ var add_d3 = function (){
   document.head.appendChild(s);
 };
 
+// ADD iframe.
+
+var add_iframe = function (date0,date1,stock) {
+  // ADD Iframe..
+  var iframe_my = document.createElement("iframe");
+  //iframe_my.id = "iframePriceHistory" + "ff";
+  iframe_my.src = `http://market.finance.sina.com.cn/pricehis.php?symbol=${stock}&startdate=${date0}&enddate=${date1}`;
+  iframe_my.frameborder = "0";
+  iframe_my.style = "width:755px;height:500px;";
+  document.body.appendChild(iframe_my);
+}
+
+
 // Step 2..
 // SAVE table as data.
 
 // empty array..
 var dt = [];
 // get table ..
-var tb = document.getElementById("datalist").getElementsByTagName("tbody")[0];
+var tb = document.getElementsByClassName("list")[0].getElementsByTagName("tbody")[0];
+var thead = document.getElementsByClassName("list")[0].getElementsByTagName("thead")[0];
+// document.getElementById("datalist").getElementsByTagName("tbody")[0];
 
 var getData = function () {
   var dt = [];
@@ -28,7 +43,9 @@ var getData = function () {
     dt.push([]);
     var j = 0;
     while (j < 3){
-      dt[i].push(row.cells[j].textContent);
+      var val = row.cells[j].textContent;
+      if (j === 2) {val = +val.replace("%", "")}
+      dt[i].push(+val);
       j++;
    } 
 }
@@ -38,11 +55,12 @@ var getData = function () {
 var dt = getData();
 
 
-
 /*
 References:
-1. https://stackoverflow.com/questions/9413737/how-to-append-script-script-in-javascript
-
+1. append script
+  - https://stackoverflow.com/questions/9413737/how-to-append-script-script-in-javascript
+2. strip unnecessary strings.
+  - https://stackoverflow.com/questions/1418050/string-strip-for-javascript
 */
 
  
