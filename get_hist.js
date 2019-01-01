@@ -4,7 +4,7 @@
 
 
 // Step 1..
-// ADD d3.
+// ADD d3.... OK
 var add_d3 = function (){
   var s = document.createElement("script");
   s.type = "text/javascript";
@@ -12,7 +12,7 @@ var add_d3 = function (){
   document.head.appendChild(s);
 };
 
-// ADD iframe.
+// ADD iframe.... OK
 
 var add_iframe = function (date0,date1,stock) {
   // ADD Iframe..
@@ -32,8 +32,10 @@ var add_iframe = function (date0,date1,stock) {
 var dt = [];
 // get table ..
 var tb = document.getElementsByClassName("list")[0].getElementsByTagName("tbody")[0];
-var thead = document.getElementsByClassName("list")[0].getElementsByTagName("thead")[0];
 // document.getElementById("datalist").getElementsByTagName("tbody")[0];
+
+var thead = document.getElementsByClassName("list")[0].getElementsByTagName("thead")[0];
+for (var i = 0, row;row = thead.rows[i])
 
 var getData = function () {
   var dt = [];
